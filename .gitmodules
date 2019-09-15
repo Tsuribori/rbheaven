@@ -1,0 +1,6 @@
+[submodule "rbback"]
+	path = rbback
+	url = https://github.com/Tsuribori/rbback
+[submodule "rbfront"]
+	path = rbfront
+	url = https://github.com/Tsuribori/rbfront

@@ -1,0 +1,60 @@
+version: '3.3'
+
+services:
+
+  rbback:
+    build: ./rbback
+    volumes:
+      - static_volume:/app/backend/rbback/static
+      - media_volume:/app/backend/rbback/media
+    networks:
+      - nginx_network
+      - database_network
+    depends_on:
+      - database
+    environment:
+      SECRET_KEY: /run/secrets/secret_key
+    secrets:
+      - secret_key
+
+  nginx:
+    image: nginx:1.17-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static_volume:/app/backend/rbback/static
+      - media_volume:/app/backend/rbback/media
+    depends_on:
+      - rbback
+      - database
+    networks:
+      - nginx_network
+
+  database:
+    image: postgres:12-alpine
+    networks:
+      - database_network
+    volumes:
+      - database_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_USER: 'rbback'
+      POSTGRES_DB: 'rbback'
+    secrets:
+      - postgres_password
+
+networks:
+  nginx_network:
+  database_network:
+
+volumes:
+  database_volume:
+  static_volume:
+  media_volume:
+
+secrets:
+  postgres_password:
+    file: password.txt
+  secret_key:
+    file: key.txt
