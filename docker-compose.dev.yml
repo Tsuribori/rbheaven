@@ -7,6 +7,7 @@ services:
     volumes:
       - static_volume:/app/backend/rbback/static
       - media_volume:/app/backend/rbback/media
+      - ./rbback/rbback/:/app/backend/rbback
     networks:
       - nginx_network
       - database_network
@@ -15,6 +16,8 @@ services:
     secrets:
       - secret_key
       - postgres_password
+    environment:
+      DEVELOPMENT: "true"
 
   nginx:
     image: nginx:1.17-alpine
