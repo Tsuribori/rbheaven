@@ -21,7 +21,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/prod/:/etc/nginx/conf.d
       - static_volume:/app/backend/rbback/static
       - media_volume:/app/backend/rbback/media
     depends_on:

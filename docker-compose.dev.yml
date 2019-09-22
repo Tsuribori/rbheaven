@@ -19,16 +19,30 @@ services:
     environment:
       DEVELOPMENT: "true"
 
+  rbfront:
+    build: ./rbfront
+    volumes:
+      - ./rbfront/:/app/frontend/
+      - /app/frontend/node_modules
+    networks:
+      - nginx_network
+    depends_on:
+      - rbback
+    ports:
+      - 3000:3000
+      - 9229:9229
+
   nginx:
     image: nginx:1.17-alpine
     ports:
       - 80:80
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/dev/:/etc/nginx/conf.d
       - static_volume:/app/backend/rbback/static
       - media_volume:/app/backend/rbback/media
     depends_on:
       - rbback
+      - rbfront
       - database
     networks:
       - nginx_network
