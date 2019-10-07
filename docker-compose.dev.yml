@@ -1,7 +1,6 @@
-version: '3.3'
+version: "3.3"
 
 services:
-
   rbback:
     build: ./rbback
     volumes:
@@ -23,7 +22,6 @@ services:
     build: ./rbfront
     volumes:
       - ./rbfront/:/app/frontend/
-      - /app/frontend/node_modules
     networks:
       - nginx_network
     depends_on:
@@ -55,8 +53,8 @@ services:
       - database_volume:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
-      POSTGRES_USER: 'rbback'
-      POSTGRES_DB: 'rbback'
+      POSTGRES_USER: "rbback"
+      POSTGRES_DB: "rbback"
     secrets:
       - postgres_password
 
