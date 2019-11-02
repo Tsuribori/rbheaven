@@ -14,8 +14,6 @@ services:
     secrets:
       - secret_key
       - postgres_password
-    logging:
-      driver: none
 
   nginx:
     image: nginx:1.17-alpine
@@ -30,8 +28,6 @@ services:
       - database
     networks:
       - nginx_network
-    logging:
-      driver: none
 
   database:
     image: postgres:12-alpine
@@ -45,8 +41,6 @@ services:
       POSTGRES_DB: "rbback"
     secrets:
       - postgres_password
-    logging:
-      driver: none
 
 networks:
   nginx_network:
