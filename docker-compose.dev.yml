@@ -19,7 +19,9 @@ services:
       DEVELOPMENT: "true"
 
   rbfront:
-    build: ./rbfront
+    build:
+      context: ./rbfront
+      dockerfile: Dockerfile.dev
     volumes:
       - ./rbfront/:/app/frontend/
     networks:
