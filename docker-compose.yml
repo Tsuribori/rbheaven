@@ -25,9 +25,15 @@ services:
       - rbback
 
   nginx:
-    image: nginx:1.17-alpine
+    image: linuxserver/letsencrypt
     ports:
       - 80:80
+      - 443:443
+    environment:
+      - TZ = Europe/Helsinki
+      - URL = example.com
+      - DHLEVEL = 4096
+      - STAGING = True
     volumes:
       - ./nginx/prod/:/etc/nginx/conf.d
       - static_volume:/app/backend/rbback/static
