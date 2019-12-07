@@ -31,6 +31,8 @@ services:
     ports:
       - 3000:3000
       - 9229:9229
+    environment:
+      REACT_APP_SITE_NAME: "Rasberry Heaven"
 
   nginx:
     image: nginx:1.17-alpine

@@ -25,6 +25,8 @@ services:
       - rbfront_volume:/app/frontend/build
     depends_on:
       - rbback
+    environment:
+      REACT_APP_SITE_NAME: "Rasberry Heaven"
 
   nginx:
     image: linuxserver/letsencrypt
