@@ -13,6 +13,7 @@ services:
       - database_network
     depends_on:
       - database
+    restart: always
     secrets:
       - secret_key
       - postgres_password
@@ -45,7 +46,9 @@ services:
       - rbfront_volume:/app/frontend/build
     depends_on:
       - rbback
+      - rbfront
       - database
+    restart: always
     networks:
       - nginx_network
 
@@ -59,6 +62,7 @@ services:
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_USER: "rbback"
       POSTGRES_DB: "rbback"
+    restart: always
     secrets:
       - postgres_password
 
