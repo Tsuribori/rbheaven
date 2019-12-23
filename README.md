@@ -2,6 +2,12 @@
 
 Site for discussing anything, anonymously.
 
+## Setup
+
+Django secret key and postgres password are read as Docker secrets from
+`key.txt` and `password.txt`, respectively. Create these two files on the same
+level as README.md and add your passwords to them.
+
 ### Development
 
 ```
