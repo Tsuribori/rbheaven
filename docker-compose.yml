@@ -40,7 +40,6 @@ services:
       - DHLEVEL=4096
       - STAGING=True
     volumes:
-      - nginx_volume:/config
       - ./nginx/prod/:/config/nginx/site-confs:ro
       - static_volume:/app/backend/rbback/static
       - media_volume:/app/backend/rbback/media
@@ -76,7 +75,6 @@ volumes:
   static_volume:
   media_volume:
   rbfront_volume:
-  nginx_volume:
 
 secrets:
   postgres_password:
